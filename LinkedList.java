@@ -1,5 +1,11 @@
 public class LinkedList {
 
+    private int size;
+
+    LinkedList() {
+       this.size = 0;
+    }
+
     Node head;
 
     //this node class is a blueprint of every node that will be created
@@ -10,6 +16,7 @@ public class LinkedList {
         Node(String data) {
             this.data = data;
             this.next = null;
+            size++;
         }
     }
 
@@ -58,6 +65,42 @@ public class LinkedList {
             tempNode = tempNode.next;
         }
         System.out.println("null");
+        System.out.println("current size: " + size);
+    }
+
+    //deleting first node
+    public void deleteFirst() {
+        if(head == null) {
+            System.out.println("the list is empty");
+            return;
+        }
+        head = head.next;
+        size--;
+    }
+
+    //deleting last node
+    public void deleteLast() {
+        if(head == null) {
+            System.out.println("the list is empty");
+            return;
+        }
+
+        size--;
+
+        if(head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node secondLast = head;
+        Node last = head.next;
+
+        while(last.next != null) {
+            last = last.next;
+            secondLast = secondLast.next;
+        }
+
+        secondLast.next = null;
     }
 
     public static void main(String[] args) {
@@ -71,6 +114,12 @@ public class LinkedList {
         list.printList();
 
         list.addLast("Pawan Kumar");
+        list.printList();
+
+        list.deleteFirst();
+        list.printList();
+
+        list.deleteLast();
         list.printList();
     }
 }
