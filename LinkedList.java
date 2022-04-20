@@ -8,7 +8,7 @@ public class LinkedList {
 
     Node head;
 
-    //this node class is a blueprint of every node that will be created
+    //this node class is a blueprint of every node that will be created.
     class Node {
         String data;
         Node next;
