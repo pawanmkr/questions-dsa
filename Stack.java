@@ -1,54 +1,48 @@
 public class Stack {
 
-    int a[];
-    int capacity;
-    int top;
+    stackNode head;
+    static int size = 0;
 
-    public void myStack(int capacity) {
-        this.capacity = capacity;
-        top = -1;
-        a = new int[capacity];
+    class stackNode {
+        int data;
+        stackNode next;
+        stackNode(int data) {
+            this.data = data;
+        }
     }
 
-    void push(int data) {
-        if(top == capacity - 1) {
-            System.out.println("Stack is completely filled");
-        }
-        top++;
-        a[top] = data;
+    //insert operation
+    public void push(int data) {
+        stackNode temp = new stackNode(data);
+        temp.next = head;
+        head = temp;
+        size++;
+        System.out.println(head.data + " pushed into stack.");
     }
 
-    int pop() {
-        if(top == -1) {
-            System.out.println("Push something first in it");
+    //remove operation
+    public void pop() {
+        if (size == 0) {
+            System.out.println("Stack is empty");
         }
-        int show = a[top];
-        top--;
-        return show;
+        System.out.println(head.data + " popped out.");
+        head = head.next;
+        size--;
     }
 
-    int peek() {
-        if (top == -1) {
-            System.out.println("khali hai");
-        }
-        return a[top];
+    //checking the size
+    public void capacity() {
+        System.out.println(size);
     }
 
     public static void main(String[] args) {
         Stack stack = new Stack();
-        stack.myStack(5);
-
-        stack.push(11);
-        stack.push(22);
         stack.push(33);
-        stack.push(44);
         stack.push(55);
-
-        System.out.println(stack.peek());
-
+        stack.push(100);
+        stack.capacity();
         stack.pop();
-        System.out.println(stack.peek());
-
+        stack.capacity();
     }
 
 }
